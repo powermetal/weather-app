@@ -1,12 +1,22 @@
-import React, { useEffect } from "react";
-import { getWeather } from "../../apis/weather";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
-const Searchbar = () => {
-  useEffect(() => {
-    getWeather();
-  }, []);
+const SearchBar = () => {
+  const history = useHistory();
+  const [city, setCity] = useState();
 
-  return <input />;
+  const onSubmitSearch = (e) => {
+    e.preventDefault();
+    if (city.length) {
+      history.push(`/weather?q=${city}`);
+    }
+  };
+
+  return (
+    <form onSubmit={(e) => onSubmitSearch(e)}>
+      <input onChange={(e) => setCity(e.target.value.trim())} />
+    </form>
+  );
 };
 
-export default Searchbar;
+export default SearchBar;

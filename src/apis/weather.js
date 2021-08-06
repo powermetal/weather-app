@@ -9,9 +9,9 @@ const weather = axios.create({
   },
 });
 
-export const getWeather = async () => {
+export const getWeather = async (id) => {
   try {
-    const results = await weather.get("/weather?q=london");
+    const results = await weather.get(`/weather?q=${id}`);
     console.log(results);
     return results.data;
   } catch (err) {
