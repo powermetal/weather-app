@@ -19,10 +19,10 @@ const toWeather = (c) => {
   return {
     city: c.name,
     weather: c.weather[0].description,
-    temp: c.main.temp,
-    minTemp: c.main.temp_min,
-    maxTemp: c.main.temp_max,
-    feelsLike: c.main.feels_like,
+    temp: Math.round(c.main.temp),
+    minTemp: Math.round(c.main.temp_min),
+    maxTemp: Math.round(c.main.temp_max),
+    feelsLike: Math.round(c.main.feels_like),
     pressure: c.main.pressure,
     humidity: c.main.humidity,
     icon: toImg(c.weather[0].icon),
@@ -34,6 +34,8 @@ export const getWeather = async (id) => {
     const results = await weather.get(`/weather?q=${id}`);
     return toWeather(results.data);
   } catch (err) {
-    console.log(err);
+    return {
+      error: err.response,
+    };
   }
 };
