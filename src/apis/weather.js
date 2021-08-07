@@ -1,4 +1,5 @@
 import axios from "axios";
+import { DateTime } from "luxon";
 
 const KEY = "0eccca835e90e18eb5e8dc96186f2864";
 
@@ -29,13 +30,26 @@ const toWeather = (c) => {
   };
 };
 
+const isFirstWeatherFromDay = (idx) => idx % 8 === 0 && idx !== 0;
+const formatDate = (dt) => DateTime.fromSeconds(dt).toFormat("EEE");
+
+export const toForecast = (forecast) => {
+  return forecast.list
+    .filter((e, i) => isFirstWeatherFromDay(i))
+    .map((e) => {
+      console.log(e.dt);
+      return { date: formatDate(e.dt), ...toWeather(e) };
+    });
+};
+
 export const getWeather = async (id) => {
-  try {
-    const results = await weather.get(`/weather?q=${id}`);
-    return toWeather(results.data);
-  } catch (err) {
-    return {
-      error: err.response,
-    };
-  }
+  const [currentWeather, forecastWeather] = await axios.all([
+    weather.get(`/weather?q=${id}`),
+    weather.get(`/forecast?q=${id}`),
+  ]);
+
+  return {
+    current: toWeather(currentWeather.data),
+    forecast: toForecast(forecastWeather.data),
+  };
 };

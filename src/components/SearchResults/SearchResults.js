@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import qs from "qs";
-import { getWeather } from "../../apis/weather";
+import { getWeather, getForecast, getCityWeather } from "../../apis/weather";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import "./SearchResults.scss";
 import errorImage from "../../images/error.png";

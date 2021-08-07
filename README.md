@@ -1,6 +1,6 @@
 Weather App using OpenWeatherMap API
 
-###Instrucciones de uso
+## Instrucciones de uso
 
 Instalar librerias necesarias con el siguiente comando:
 
