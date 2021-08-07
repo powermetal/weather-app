@@ -3,4 +3,9 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "poppins", "sans-serif";
+  color: white;
+}
+
+body {
+  background-color: #252849;
 }
