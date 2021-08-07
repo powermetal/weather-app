@@ -1,0 +1,46 @@
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.weather-card {
+  @include flex-column();
+  align-items: center;
+  padding: 1rem;
+
+  &__main {
+    display: flex;
+    padding: 1rem;
+    align-items: center;
+  }
+
+  &__weather {
+    @include flex-column();
+    align-items: center;
+    position: relative;
+
+    span {
+      position: absolute;
+      bottom: 20px;
+    }
+  }
+
+  &__temp {
+    @include flex-column();
+  }
+
+  &__temp:not(:first-child) {
+    font-size: 0.8rem;
+  }
+
+  &__extra {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+  }
+}
+
+.weather-card__temp :first-child {
+  font-size: 4rem;
+}
