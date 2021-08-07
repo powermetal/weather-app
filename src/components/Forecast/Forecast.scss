@@ -26,3 +26,13 @@
     bottom: 20px;
   }
 }
+
+@media screen and (max-width: 360px) {
+  .forecast img {
+    transform: scale(50%);
+  }
+
+  .forecast__item {
+    width: 100px;
+  }
+}
