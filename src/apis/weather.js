@@ -12,8 +12,8 @@ const weather = axios.create({
   },
 });
 
-const toImg = (id, small) => {
-  return `http://openweathermap.org/img/wn/${id}@${small ? "2x" : "4x"}.png`;
+const toImg = (id) => {
+  return `http://openweathermap.org/img/wn/${id}@4x.png`;
 };
 
 const toWeather = (c) => {

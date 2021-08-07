@@ -45,18 +45,6 @@
     justify-content: space-around;
     padding: 1rem;
   }
-
-  &::after {
-    content: "";
-    background-color: #2a2d53;
-    height: 80%;
-    width: 2px;
-    border-radius: 7px;
-    position: absolute;
-    right: -15px;
-    top: 50%;
-    transform: translateY(-50%);
-  }
 }
 
 .weather-card__temp :first-child {
@@ -71,15 +59,19 @@
     right: 50%;
     transform: translateX(50%);
   }
+
+  .weather-card__temp :first-child {
+    font-size: 3rem;
+  }
 }
 
 @media screen and (max-width: 360px) {
-  .weather-card::after {
-    width: 50%;
-  }
-
   .weather-card {
     text-align: center;
+
+    h1 {
+      font-size: 2rem;
+    }
 
     &__main {
       flex-direction: column;
