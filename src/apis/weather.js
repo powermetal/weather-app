@@ -12,8 +12,8 @@ const weather = axios.create({
   },
 });
 
-const toImg = (id) => {
-  return `http://openweathermap.org/img/wn/${id}@4x.png`;
+const toImg = (id, small) => {
+  return `http://openweathermap.org/img/wn/${id}@${small ? "2x" : "4x"}.png`;
 };
 
 const toWeather = (c) => {
@@ -37,19 +37,22 @@ export const toForecast = (forecast) => {
   return forecast.list
     .filter((e, i) => isFirstWeatherFromDay(i))
     .map((e) => {
-      console.log(e.dt);
       return { date: formatDate(e.dt), ...toWeather(e) };
     });
 };
 
 export const getWeather = async (id) => {
-  const [currentWeather, forecastWeather] = await axios.all([
-    weather.get(`/weather?q=${id}`),
-    weather.get(`/forecast?q=${id}`),
-  ]);
+  try {
+    const [currentWeather, forecastWeather] = await axios.all([
+      weather.get(`/weather?q=${id}`),
+      weather.get(`/forecast?q=${id}`),
+    ]);
 
-  return {
-    current: toWeather(currentWeather.data),
-    forecast: toForecast(forecastWeather.data),
-  };
+    return {
+      current: toWeather(currentWeather.data),
+      forecast: toForecast(forecastWeather.data),
+    };
+  } catch (err) {
+    return { error: err.response };
+  }
 };

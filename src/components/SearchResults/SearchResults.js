@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from "react";
 import qs from "qs";
-import { getWeather, getForecast, getCityWeather } from "../../apis/weather";
+import { getWeather } from "../../apis/weather";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import "./SearchResults.scss";
 import errorImage from "../../images/error.png";
+import Forecast from "../Forecast/Forecast";
 
 const SearchResults = (props) => {
   const [searchResults, setSearchResults] = useState();
 
-  const getCityData = async () => {
-    const query = qs.parse(props.location.search, { ignoreQueryPrefix: true });
-    const results = await getWeather(query.q);
-    setSearchResults(results);
-  };
-
   useEffect(() => {
+    const getCityData = async () => {
+      const query = qs.parse(props.location.search, {
+        ignoreQueryPrefix: true,
+      });
+      const results = await getWeather(query.q);
+      setSearchResults(results);
+    };
+
     getCityData();
     return () => setSearchResults(undefined);
   }, [props.location.search]);
@@ -29,7 +32,12 @@ const SearchResults = (props) => {
       );
     }
     if (searchResults) {
-      return <WeatherCard weather={searchResults} />;
+      return (
+        <div className="search-results">
+          <WeatherCard weather={searchResults.current} />
+          <Forecast forecast={searchResults.forecast} />
+        </div>
+      );
     } else {
       return <div className="message">Loading...</div>;
     }

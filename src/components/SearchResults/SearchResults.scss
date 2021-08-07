@@ -1,6 +1,11 @@
+.search-results {
+  display: flex;
+  align-items: center;
+}
+
 .message {
   min-width: 420px;
-  min-height: 370px;
+  min-height: 410px;
   display: flex;
   justify-content: center;
   align-items: center;
