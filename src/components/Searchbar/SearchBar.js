@@ -17,7 +17,7 @@ const SearchBar = () => {
     <form className="searchbar" onSubmit={(e) => onSubmitSearch(e)}>
       <input
         onChange={(e) => setCity(e.target.value.trim())}
-        placeholder="Enter city name..."
+        placeholder="Ingresar una ciudad..."
       />
     </form>
   );
