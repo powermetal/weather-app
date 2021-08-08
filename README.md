@@ -1,13 +1,19 @@
-Weather App using OpenWeatherMap API
+Aplicacion de clima usando OpenWeatherMap API
 
-## Instrucciones de uso
+## [Demo](https://powermetal.github.io/weather-app/#/)
 
-Instalar librerias necesarias con el siguiente comando:
+## Instalacion
 
-### `npm install`
+Instalar dependencias:
+
+```shell
+npm install
+```
 
 Correr la aplicacion con el siguiente comando:
 
-### `npm start`
+```shell
+npm start
+```
 
 Abrir http://localhost:3000/ para ver la aplicacion en el navegador.
